@@ -1,66 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator();
 
-const plays = ["X", "O", "X", "", "", "X", "", "O", ""];
-const Cell = ({ play }) => {
-  return (
-    <View style={styles.cell}>
-      <Text style={styles.text}>{play}</Text>
-    </View>
-  );
-};
+import Home from "./src/screens/Home";
+import Rules from "./src/screens/Rules";
+import Credits from "./src/screens/Credits";
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.table}>
-        <View style={styles.board}>
-          {plays.map((p, idx) => (
-            <Cell key={idx} play={p} />
-          ))}
-        </View>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Rules" component={Rules} />
+        <Stack.Screen name="Credits" component={Credits} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
-    justifyContent: "center",
-  },
-  table: {
-    flex: 1,
-    backgroundColor: "#ccc",
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  board: {
-    width: 300,
-    height: 300,
-    backgroundColor: "orange",
-    borderWidth: 2,
-    borderColor: "black",
-    borderRadius: 10,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    // alignItems: "center",
-    paddingTop: 25,
-  },
-  cell: {
-    width: 80,
-    height: 80,
-    backgroundColor: "#090",
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "white",
-  },
-});
