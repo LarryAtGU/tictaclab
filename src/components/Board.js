@@ -1,10 +1,13 @@
 import { View, StyleSheet } from "react-native";
 import Cell from "./Cell";
-export default function Board({ plays }) {
+export default function Board({ plays, onPress }) {
+  const generatePressFun = (idx) => {
+    return () => onPress(idx);
+  };
   return (
     <View style={styles.board}>
       {plays.map((p, idx) => (
-        <Cell key={idx} play={p} />
+        <Cell key={idx} play={p} onPress={generatePressFun(idx)} />
       ))}
     </View>
   );

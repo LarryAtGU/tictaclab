@@ -1,10 +1,15 @@
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, Pressable } from "react-native";
 
-export default function Cell({ play }) {
+export default function Cell({ play, onPress }) {
   return (
-    <View style={styles.cell}>
+    <Pressable
+      style={({ pressed }) =>
+        pressed ? [styles.cell, { opacity: 0.5 }] : styles.cell
+      }
+      onPress={play ? null : onPress}
+    >
       <Text style={styles.text}>{play}</Text>
-    </View>
+    </Pressable>
   );
 }
 

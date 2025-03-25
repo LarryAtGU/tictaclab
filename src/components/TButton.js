@@ -1,12 +1,21 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import colors from "../constants/colors";
-export default function TButton({ label, fun = () => {} }) {
+export default function TButton({
+  label,
+  fun = () => {},
+  width = 90,
+  enabled = true,
+}) {
   return (
     <Pressable
       style={({ pressed }) =>
-        pressed ? [styles.container, { opacity: 0.5 }] : styles.container
+        enabled
+          ? pressed
+            ? [styles.container, { opacity: 0.5 }, { width }]
+            : [styles.container, { width }]
+          : [styles.container, { width, backgroundColor: "#ccc" }]
       }
-      onPress={fun}
+      onPress={enabled ? fun : null}
     >
       <Text style={styles.text}>{label}</Text>
     </Pressable>
