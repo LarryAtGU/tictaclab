@@ -1,6 +1,6 @@
 import { StyleSheet, Text, Pressable } from "react-native";
 
-export default function Cell({ play, onPress }) {
+export default function Cell({ play, onPress, isWin }) {
   return (
     <Pressable
       style={({ pressed }) =>
@@ -8,7 +8,9 @@ export default function Cell({ play, onPress }) {
       }
       onPress={play ? null : onPress}
     >
-      <Text style={styles.text}>{play}</Text>
+      <Text style={isWin ? [styles.text, { color: "red" }] : styles.text}>
+        {play}
+      </Text>
     </Pressable>
   );
 }

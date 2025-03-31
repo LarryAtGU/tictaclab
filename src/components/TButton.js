@@ -4,20 +4,22 @@ export default function TButton({
   label,
   fun = () => {},
   width = 90,
+  height = 40,
   enabled = true,
+  fontSize = 15,
 }) {
   return (
     <Pressable
       style={({ pressed }) =>
         enabled
           ? pressed
-            ? [styles.container, { opacity: 0.5 }, { width }]
-            : [styles.container, { width }]
-          : [styles.container, { width, backgroundColor: "#ccc" }]
+            ? [styles.container, { opacity: 0.5 }, { width, height }]
+            : [styles.container, { width, height }]
+          : [styles.container, { width, height, backgroundColor: "#ccc" }]
       }
       onPress={enabled ? fun : null}
     >
-      <Text style={styles.text}>{label}</Text>
+      <Text style={[styles.text, { fontSize }]}>{label}</Text>
     </Pressable>
   );
 }

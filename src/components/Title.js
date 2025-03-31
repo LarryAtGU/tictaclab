@@ -1,9 +1,14 @@
 import { View, StyleSheet, Text } from "react-native";
 import colors from "../constants/colors";
-export default function Title({ title }) {
+export default function Title({
+  title,
+  fontSize = 30,
+  height = 60,
+  backgroundColor = colors.title,
+}) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{title}</Text>
+    <View style={[styles.container, { backgroundColor, height }]}>
+      <Text style={[styles.text, { fontSize }]}>{title}</Text>
     </View>
   );
 }
